@@ -58,6 +58,14 @@ function onCreateFreqTranStart($div){
 
 function onCreateFreqTranComplete($div, $el){
     $div.find("form").submit(function(){
+        $div.find("form").click(function(){
+            return false;
+        });
+        $div.find("form").keypress(function(e) {
+            if (e.which == 13) {
+                return false;
+            }
+        });
         if(Contabilidad.Validate.isValid($(this))){
             var data = {};
             $(this).find("input,select").each(function(){

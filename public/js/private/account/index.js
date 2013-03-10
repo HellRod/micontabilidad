@@ -148,6 +148,14 @@ function onVisibleMiniTransaction($el){
     });
     
     $('#create-mini-transaction-form form').submit(function(){
+        $("form").click(function(){
+            return false;
+        });
+        $("form").keypress(function(e) {
+            if (e.which == 13) {
+                return false;
+            }
+        });
         Contabilidad.Validate.clean($('#create-mini-transaction-form'));
         $('#create-mini-transaction-form .response')
         .html("").removeClass("*").addClass("response");
@@ -161,6 +169,7 @@ function onVisibleMiniTransaction($el){
             Contabilidad.getEndPoint({async : true, success: function(resp){
                 displaySavedTransactions(resp);
                 $el.qtip('hide');
+                location.reload();
             }}).saveTransaction(data);
         } else {
             findAndDisplayErrors($("#create-mini-transaction-form").parent());
@@ -408,6 +417,14 @@ function transactionPoppupCommonEvents($div, date){
     });
     
     $div.find("form").submit(function(){
+        $div.find("form").click(function(){
+            return false;
+        });
+        $div.find("form").keypress(function(e) {
+            if (e.which == 13) {
+                return false;
+            }
+        });
         Contabilidad.Validate.clean($('#create-mini-transaction-form'));
         $('#create-mini-transaction-form .response')
         .html("").removeClass("*").addClass("response");
@@ -434,6 +451,7 @@ function transactionPoppupCommonEvents($div, date){
             Contabilidad.getEndPoint({async : true, success: function(resp){
                 displaySavedTransactions(resp);
             }}).saveTransaction(data);
+            location.reload();
             $.fancybox.close();
         } else {
             if(data["date"] < Contabilidad.account.date_ini

@@ -82,6 +82,14 @@ QHelpers.account.showBalancePopup = function ($el, account){
 QHelpers.account.onAccountPopupStart = function ($div, account){
     if (account){//edit
         $div.find("form").submit(function(){
+            $div.find("form").click(function(){
+                return false;
+            });
+            $div.find("form").keypress(function(e) {
+                if (e.which == 13) {
+                    return false;
+                }
+            });
             var date_ini = $div.find("input[name='date_ini']").datepicker("getDate").getTime()/1000;
             var date_end = $div.find("input[name='date_end']").datepicker("getDate").getTime()/1000;
             if(Contabilidad.Validate.isValid($(this)) && date_end >= date_ini){
@@ -158,6 +166,14 @@ QHelpers.account.onAccountPopupStart = function ($div, account){
         $div.find("input[name='name']").val(accountName);
 
         $div.find("form").submit(function(){
+            $div.find("form").click(function(){
+                return false;
+            });
+            $div.find("form").keypress(function(e) {
+                if (e.which == 13) {
+                    return false;
+                }
+            });
             var date_ini = $div.find("input[name='date_ini']").datepicker("getDate").getTime()/1000;
             var date_end = $div.find("input[name='date_end']").datepicker("getDate").getTime()/1000;
             if(Contabilidad.Validate.isValid($(this)) && date_end >= date_ini){
